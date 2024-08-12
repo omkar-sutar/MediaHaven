@@ -1,0 +1,38 @@
+/* header.css */
+.header {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #1ABC9C; /* Dark Slate Blue */
+    color: #FFFFFF; /* Pure White */
+    position: relative; /* Allows the use of absolute positioning */
+    height: 35px;
+}
+
+.header-title {
+    position: absolute; /* Positioning it absolutely */
+    left: 50%; /* Move it to the center */
+    transform: translateX(-50%); /* Offset it by half of its own width */
+    font-size: 24px;
+    font-weight: bold;
+    color: #FFFFFF; /* Pure White */
+}
+
+.logout-button {
+    background-color: #ffffff; /* Vibrant Teal */
+    border: none;
+    color: #1ABC9C; /* Pure White */
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: auto; /* Push it to the far right */
+    transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: #dfdfdf; /* Darker Teal */
+}

@@ -1,0 +1,12 @@
+.mediaView {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+    padding: 10px;
+}
+
+@media only screen and (min-width: 768px) {
+    .mediaView {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
