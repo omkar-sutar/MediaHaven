@@ -8,7 +8,7 @@ import Media from './pages/media/media';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  //<React.StrictMode>
     <BrowserRouter>
       <Routes>
         <Route path="/media" element={<Media />} />
@@ -16,7 +16,7 @@ root.render(
          <Route path="*" element={<Media />} /> 
       </Routes>
     </BrowserRouter>
-  </React.StrictMode>
+  //</React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

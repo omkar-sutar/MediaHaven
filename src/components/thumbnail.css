@@ -3,6 +3,8 @@
     padding-top: 100%; /* Creates a 1:1 aspect ratio */
     position: relative;
     border-radius: 15px;
+    background-color: rgb(110, 110, 110);
+    border: none;
 }
 
 .thumbnail img {
@@ -13,4 +15,5 @@
     height: 100%;
     border-radius: 6px;
     object-fit: cover;
+    border: none;
 }

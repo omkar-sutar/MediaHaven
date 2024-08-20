@@ -3,6 +3,8 @@ import { Navigate } from 'react-router-dom';
 import { GetFilenames, GetThumbnails, UnauthorizedError } from './apis';
 import { MediaView } from "../../components/mediaview";
 import { Header } from "../../components/header";
+import { Lightbox } from "../../components/lightbox";
+import "./media.css"
 
 export default function Media() {
     const [listFilesResp, setListFilesResp] = useState({ "files": [] });
@@ -10,6 +12,9 @@ export default function Media() {
     const [filenames, setFilenames] = useState([]);
     const [showLogin, setShowLogin] = useState(false);
     const [showMedia, setShowMedia] = useState({});
+    const [serviceUnavailable,setServiceUnavailable] = useState(false)
+    const [showLightBox,setShowLightBox] = useState(false)
+    const [lightboxFileIndex, setLightBoxFileIndex] = useState(0)
     const thumbnailLoader = useRef(null);
 
     // Initialize this only once
@@ -22,70 +27,108 @@ export default function Media() {
             setFilenames(jsonData.files.map(file => file.filename));
             setListFilesResp(jsonData);
         }).catch((error) => {
-            console.log(error);
+            console.log(error.message);
             if (error === UnauthorizedError) {
                 setShowLogin(true);
+            }
+            else if(error.message==="Failed to fetch"){
+                setServiceUnavailable(true)
             }
         });
 
     }, []);
 
+    // useEffect(() => {
+    //     // // Create a new AbortController for each thumbnail loading session
+    //     // abortControllerRef.current = new AbortController();
+
+    //     // SetThumbnailsInBatch(filenames, thumbnails, setThumbnails, abortControllerRef.current.signal)
+    //     //     .catch((error)=>{
+    //     //         if(error===UnauthorizedError)setShowLogin(true)
+    //     //     });
+
+    //     // // Cleanup function
+    //     // return () => {
+    //     //     if (abortControllerRef.current) {
+    //     //         abortControllerRef.current.abort();
+    //     //     }
+    //     // };
+    //     console.log("Starting thumbnail loading session")
+    //     thumbnailLoader.current.start(filenames, thumbnails, setThumbnails).catch((error)=>{
+    //         if(error==UnauthorizedError){
+    //             setShowLogin(true)
+    //         }
+    //     })
+
+    //     // Cleanup function
+    //     return ()=>{
+    //         thumbnailLoader.current.stop()
+    //     }
+    // }, [listFilesResp]);
+
+
+    // Thumbnail loading is on when lightbox is off and vice versa
     useEffect(() => {
-        // // Create a new AbortController for each thumbnail loading session
-        // abortControllerRef.current = new AbortController();
 
-        // SetThumbnailsInBatch(filenames, thumbnails, setThumbnails, abortControllerRef.current.signal)
-        //     .catch((error)=>{
-        //         if(error===UnauthorizedError)setShowLogin(true)
-        //     });
+        console.log(showLightBox,listFilesResp)
 
-        // // Cleanup function
-        // return () => {
-        //     if (abortControllerRef.current) {
-        //         abortControllerRef.current.abort();
-        //     }
-        // };
-        console.log("Starting thumbnail loading session")
-        thumbnailLoader.current.start(filenames, thumbnails, setThumbnails).catch((error)=>{
+        if (showLightBox===false){
+            console.log("Starting thumbnail loading session")
+            thumbnailLoader.current.start(filenames, thumbnails, setThumbnails).catch((error)=>{
             if(error==UnauthorizedError){
                 setShowLogin(true)
             }
         })
+        }
+        else{
+            // Abort the current thumbnail loading
+        thumbnailLoader.current.stop()
+        }
 
         // Cleanup function
         return ()=>{
+            console.log("Cleanup")
             thumbnailLoader.current.stop()
         }
-    }, [listFilesResp]);
-
-    useEffect(() => {
-        if (Object.keys(showMedia).length === 0) return;
-        console.log("Thumbnail clicked", showMedia);
-
-        // Abort the current thumbnail loading
-        thumbnailLoader.current.stop()
         
-    }, [showMedia]);
+    }, [showLightBox,listFilesResp]);
 
     if (showLogin) {
         return <Navigate to={"/login"} />;
     }
 
+    if (serviceUnavailable){
+        return <div style={{justifyContent:"center", display:"flex", color:"#FFBADE"}}><h1>Service Unavailable</h1></div>
+    }
+
     return (
+        <>
         <div>
             <Header setShowLogin={setShowLogin} />
             <MediaView
                 thumbnails={thumbnails}
                 filenames={filenames}
-                setShowMedia={setShowMedia}
+                showLightBox={showLightBox}
+                setShowLightBox={setShowLightBox}
+                lightboxFileIndex = {lightboxFileIndex}
+                setLightBoxFileIndex = {setLightBoxFileIndex}
                 key={"mediaview"}
             />
+            {/* { showLightBox, setShowLightBox, filenames, lightboxFileIndex, setLightBoxFileIndex} */}
+            {showLightBox?<Lightbox 
+                showLightBox={showLightBox}
+                setShowLightBox={setShowLightBox}
+                filenames={filenames}
+                lightboxFileIndex = {lightboxFileIndex}
+                setLightBoxFileIndex = {setLightBoxFileIndex}>
+             </Lightbox>:'' }
         </div>
+        </>
     );
 }
 
 async function SetThumbnailsInBatch(filenames, thumbnails, setThumbnails, signal) {
-    const batchSize = 3;
+    const batchSize = 16;
     let offset = 0
 
     //Continue where left off

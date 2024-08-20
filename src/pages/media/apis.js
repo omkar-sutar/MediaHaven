@@ -4,8 +4,10 @@ const serverurl = process.env.REACT_APP_SERVER_URL || "http://localhost:5001";
 const listmediaurl = serverurl+"/api/media"
 const getThumbnailUrl = serverurl + "/api/media/thumbnails"
 const getJWTTokenUrl = serverurl + "/login"
+const getMediaUrl = serverurl + "/api/media"
 
 export const UnauthorizedError = new Error("Unauthorized")
+export const ResponseNotOk = new Error("ResponseNotOk")
 const tokenKey="token"
 
 export function retriveJWTToken(){
@@ -22,7 +24,8 @@ export function deleteJWTToken(){
 export  async function GetFilenames(){
     const url = new URL(listmediaurl)
         const queryParams={
-            "sortby":"ctime", "orderby":"desc"
+            "sortby":"ctime", "orderby":"desc",
+            "extensions":"mp4,jpg,png,jpeg"
         }
         for (let key in queryParams){
             url.searchParams.set(key,queryParams[key])
@@ -89,4 +92,42 @@ export async function GetJWTToken(username,password) {
         throw new Error("Token not fount in response")
     }
     return jsonData
+}
+
+// Fetches the file and creates a URI to that file
+export async function GetImage(filename){
+    const url = new URL(getMediaUrl+`/${filename}`)
+    const queryParams={
+        "quality":30
+    }
+    for (let key in queryParams){
+        url.searchParams.set(key,queryParams[key])
+    }
+    const response = await fetch(url,{
+        headers:{
+            "Content-Type":"application/json",
+            "x-access-token":retriveJWTToken()
+            }
+    })
+    if(response.status===401){
+        throw UnauthorizedError
+    }
+    if (!response.ok){
+        console.log(response.status)
+        throw  ResponseNotOk
+    }
+    const blob = await response.blob();
+    const objUrl = URL.createObjectURL(blob);
+    return objUrl
+}
+
+export function PrepareVideoURL(filename){
+    const url = new URL(getMediaUrl+`/${filename}`)
+    const queryParams={
+        "token":retriveJWTToken()
+    }
+    for (let key in queryParams){
+        url.searchParams.set(key,queryParams[key])
+    }
+    return url.toString()
 }

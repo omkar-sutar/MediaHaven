@@ -13,7 +13,7 @@ export function Header(props) {
 
     return (
         <header className="header">
-            <div className="header-title">MediaHaven</div>
+            <div className="header-title">mediaHaven</div>
             <button className="logout-button" onClick={handleLogout}>
                 Logout
             </button>

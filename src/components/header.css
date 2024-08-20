@@ -1,28 +1,35 @@
 /* header.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
 .header {
     display: flex;
     align-items: center;
-    padding: 10px 20px;
-    background-color: #1ABC9C; /* Dark Slate Blue */
-    color: #FFFFFF; /* Pure White */
+    padding: 16px 15px;
+    /*background-color: #1ABC9C; /* Dark Slate Blue */
+    background-color: #201F31;
+    color: #FFBADE; /* Pure White */
     position: relative; /* Allows the use of absolute positioning */
     height: 35px;
 }
 
 .header-title {
     position: absolute; /* Positioning it absolutely */
-    left: 50%; /* Move it to the center */
-    transform: translateX(-50%); /* Offset it by half of its own width */
-    font-size: 24px;
-    font-weight: bold;
-    color: #FFFFFF; /* Pure White */
+    /*left: 50%; /* Move it to the center */
+    /*transform: translateX(-50%); /* Offset it by half of its own width */
+    font-size: 28px;
+    /* font-weight: bold; */
+    color: #FFBADE; 
+    font-family: "Righteous", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .logout-button {
-    background-color: #ffffff; /* Vibrant Teal */
+    background-color: #FFBADE; /* Vibrant Teal */
     border: none;
-    color: #1ABC9C; /* Pure White */
-    padding: 8px 16px;
+    color: black; /* Pure White */
+    padding: 7px 8px;
     text-align: center;
     text-decoration: none;
     display: inline-block;

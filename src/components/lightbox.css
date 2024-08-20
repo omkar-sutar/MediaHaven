@@ -1,0 +1,76 @@
+#lightbox {
+    z-index: 1; /* Increased z-index */
+    position: fixed;
+    top: 10vh;
+    left: 10vw;
+    width: 80vw;
+    height: 80vh;
+    background-color: rgba(0, 0, 0, 0.82);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 20px;
+}
+
+#lightbox > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#lightbox > video{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#lightbox > button {
+    z-index: 2;
+    width: 50px;  /* Set a width */
+    height: 50px; /* Set a height */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+#lightbox > button.lightbox-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    width: 30px;
+    height: 30px;
+    background-color: rgba(0, 0, 0,0);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#lightbox > button:hover {
+    opacity: 1;
+}
+
+#lightbox > button.lightbox-prev-btn {
+    background-image: url("../assets/left.png"); 
+    background-color: rgba(0, 0, 0, 0.0);
+}
+
+#lightbox > button.lightbox-next-btn {
+    background-image: url("../assets/right.png");
+    background-color: rgba(0, 0, 0, 0.0);
+}

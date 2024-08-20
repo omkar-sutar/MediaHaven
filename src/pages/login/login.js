@@ -33,6 +33,9 @@ export default function Login(){
                 console.log("Invalid username/password")
                 alert("Invalid credentials")
             }
+            else if(error.message==="Failed to fetch"){
+                alert("Backend service unreachable")
+            }
             console.log("Error fetching jwt token, ",error.stack)
         })
     }
@@ -40,11 +43,13 @@ export default function Login(){
         return <Navigate to={"/media"}></Navigate>
     }
 
-    return <div id="login-main-container">
+    return <>
+<div id="login-main-container">
         <div className="login">
             <input type="text" className="login-username" id="username" placeholder="Username"></input>
             <input type="password" className="login-password" id="password" placeholder="Password"></input>
             <button onClick={onLogin}>Login</button>
         </div>
     </div>
+    </>
 }
