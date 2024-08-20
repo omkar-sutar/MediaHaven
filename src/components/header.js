@@ -1,8 +1,8 @@
 import React, { useState, useTransition } from 'react';
 import './header.css';
-import { deleteJWTToken } from '../pages/media/apis';
 import userIcon from "../assets/user-pink.svg"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { deleteJWTToken } from '../utils';
 
 export function Header(props) {
     const handleLogout = () => {
@@ -14,11 +14,12 @@ export function Header(props) {
     };
 
     const [showDropDown,setShowDropDown] = useState(false)
+    const navigate = useNavigate()
 
 
     return (
         <header className="header">
-            <div className="header-title">mediaHaven</div>
+            <div className="header-title" > <Link  to={"/navigate"}>mediaHaven</Link></div>
 
             <img className='header-profile-icon' src={userIcon} alt="nooo" onClick={()=>setShowDropDown(prev=>!prev)}></img>
 

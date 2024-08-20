@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import "./login.css"
-import { GetJWTToken, setJWTToken,UnauthorizedError} from "../media/apis"
+import { GetJWTToken,UnauthorizedError} from "../media/apis"
 import { Navigate } from "react-router-dom"
+import { setJWTToken } from "../../utils"
 
 export default function Login(){
 

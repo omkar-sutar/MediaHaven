@@ -5,6 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Media from './pages/media/media';
  import Login from './pages/login/login';
+import { Settings } from './pages/settings/settings';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,6 +14,7 @@ root.render(
       <Routes>
         <Route path="/media" element={<Media />} />
          <Route path="/login" element={<Login />} /> 
+         <Route path="/settings" element={<Settings/>} /> 
          <Route path="*" element={<Media />} /> 
       </Routes>
     </BrowserRouter>

@@ -27,6 +27,10 @@
     font-style: normal;
 }
 
+.header-title>*{
+    color: inherit;
+    text-decoration: none;
+}
 .logout-button {
     background-color: #FFBADE; /* Vibrant Teal */
     border: none;

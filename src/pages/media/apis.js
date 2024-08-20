@@ -1,3 +1,6 @@
+import { retriveJWTToken,deleteJWTToken,setJWTToken, retrieveImageQuality } from "../../utils";
+
+
 
 const serverurl = process.env.REACT_APP_SERVER_URL || "http://localhost:5001";
 
@@ -8,18 +11,7 @@ const getMediaUrl = serverurl + "/api/media"
 
 export const UnauthorizedError = new Error("Unauthorized")
 export const ResponseNotOk = new Error("ResponseNotOk")
-const tokenKey="token"
 
-export function retriveJWTToken(){
-    return localStorage.getItem(tokenKey)
-}
-export function setJWTToken(token){
-    localStorage.setItem(tokenKey,token)
-}
-
-export function deleteJWTToken(){
-    localStorage.removeItem(tokenKey)
-}
 
 export  async function GetFilenames(){
     const url = new URL(listmediaurl)
@@ -98,7 +90,7 @@ export async function GetJWTToken(username,password) {
 export async function GetImage(filename){
     const url = new URL(getMediaUrl+`/${filename}`)
     const queryParams={
-        "quality":30
+        "quality":retrieveImageQuality()
     }
     for (let key in queryParams){
         url.searchParams.set(key,queryParams[key])
