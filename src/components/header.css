@@ -2,15 +2,17 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 
+
 .header {
     display: flex;
     align-items: center;
     padding: 16px 15px;
-    /*background-color: #1ABC9C; /* Dark Slate Blue */
     background-color: #201F31;
-    color: #FFBADE; /* Pure White */
-    position: relative; /* Allows the use of absolute positioning */
+    color: #FFBADE;
+    position: sticky;
+    top: 0; /* Make the header stick to the top of the page */
     height: 35px;
+    z-index: 10; /* Ensure the header is on top of other elements */
 }
 
 .header-title {
@@ -42,4 +44,38 @@
 
 .logout-button:hover {
     background-color: #dfdfdf; /* Darker Teal */
+}
+
+#header-profile-dropdown{
+    position: absolute;
+    z-index: 2;
+    width: 200px;
+    top:60px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 15px;
+    justify-content: center;
+    align-items: center;
+    transition: display 2s;
+}
+
+.header-dropdown-row{
+    display: flex;
+    justify-content: center;
+    margin-top: 13px;
+    margin-bottom: 13px;
+    cursor: pointer;
+}
+
+.header-dropdown-row > a{
+    text-decoration: none;
+    color: #FFBADE;
+}
+
+.header-profile-icon{
+    margin-left: auto;
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+    cursor: pointer;
 }
