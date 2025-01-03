@@ -6,13 +6,13 @@ import { useNavigate } from "react-router-dom";
 
 export function Settings() {
   const [imageQualitySliderValue, setImageQualitySliderValue] = useState(retrieveImageQuality());
+  const [showLogin, setShowLogin] = useState(false);
   const navigate = useNavigate()
   
 
   const handleSliderChange = (e) => {
     const value = parseInt(e.target.value);
     setImageQualitySliderValue(value);
-    //localStorage.setItem("imageQuality", value);
   };
 
   const onSave = (e)=>{

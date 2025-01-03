@@ -104,7 +104,7 @@ export default function Media() {
     return (
         <>
         <div>
-            <Header setShowLogin={setShowLogin} />
+            <Header />
             <MediaView
                 thumbnails={thumbnails}
                 filenames={filenames}

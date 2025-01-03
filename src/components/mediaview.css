@@ -1,13 +1,13 @@
 .mediaView {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+    gap: 5px;
     padding: 10px;
     padding-top: 0%;
 }
 
 @media only screen and (min-width: 768px) {
     .mediaView {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
 }

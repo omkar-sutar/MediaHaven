@@ -6,11 +6,9 @@ import { deleteJWTToken } from '../utils';
 
 export function Header(props) {
     const handleLogout = () => {
-        // Implement your logout logic here
         console.log("User logged out");
-        const setShowLogin=props.setShowLogin
         deleteJWTToken()
-        setShowLogin(true)
+        navigate('/login');
     };
 
     const [showDropDown,setShowDropDown] = useState(false)
@@ -19,7 +17,7 @@ export function Header(props) {
 
     return (
         <header className="header">
-            <div className="header-title" > <Link  to={"/navigate"}>mediaHaven</Link></div>
+            <div className="header-title" > <Link  to={"/media"}>mediaHaven</Link></div>
 
             <img className='header-profile-icon' src={userIcon} alt="nooo" onClick={()=>setShowDropDown(prev=>!prev)}></img>
 

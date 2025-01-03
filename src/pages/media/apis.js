@@ -1,8 +1,8 @@
-import { retriveJWTToken,deleteJWTToken,setJWTToken, retrieveImageQuality } from "../../utils";
+import { retriveJWTToken, retrieveImageQuality } from "../../utils";
 
 
 
-const serverurl = process.env.REACT_APP_SERVER_URL || "http://localhost:5001";
+const serverurl = process.env.REACT_APP_BACKEND_SERVER_URL || "http://localhost:5001";
 
 const listmediaurl = serverurl+"/api/media"
 const getThumbnailUrl = serverurl + "/api/media/thumbnails"
