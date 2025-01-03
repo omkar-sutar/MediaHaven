@@ -2,6 +2,18 @@
 
 **MediaHaven** is an application designed to safely back up your data to a self-hosted server.
 
+## Gallary
+![mediahaven_home](https://github.com/user-attachments/assets/3f82836f-6d94-4b0c-9535-7ea4b5de01b3)
+
+
+---
+
+
+![mediahaven_open](https://github.com/user-attachments/assets/64a4b4d1-8c44-4bab-b48b-e2d4f75f3da5)
+
+
+---
+
 This application consists of two components:
 - **Frontend (UI component):** Allows you to view and manage your media (this repository).
 - **Backend:** [MediaHaven API Server](https://github.com/omkar-sutar/MediaHaven-Backend).
