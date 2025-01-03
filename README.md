@@ -2,7 +2,7 @@
 
 **MediaHaven** is an application designed to safely back up your data to a self-hosted server.
 
-## Gallary
+## Gallery
 ![mediahaven_home](https://github.com/user-attachments/assets/3f82836f-6d94-4b0c-9535-7ea4b5de01b3)
 
 
