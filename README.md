@@ -18,6 +18,7 @@ This application consists of two components:
 - **Frontend (UI component):** Allows you to view and manage your media (this repository).
 - **Backend:** [MediaHaven API Server](https://github.com/omkar-sutar/MediaHaven-Backend).
 
+### To backup media from your android device, use [MediaSync](https://github.com/omkar-sutar/MediaSync)
 ---
 
 ## Prerequisites
