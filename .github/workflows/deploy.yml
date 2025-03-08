@@ -21,4 +21,4 @@ jobs:
     - name: Stop and Remove Existing Container (if running)
       run: docker ps -q --filter "name=mediahavenfd" | grep -q . && docker stop mediahavenfd && docker rm mediahavenfd || true
     - name: Run the container
-      run: docker run -d -p 3000:3000 mediahavenfd mediahavenfd
+      run: docker run -d -p 3000:3000 --restart always mediahavenfd mediahavenfd
