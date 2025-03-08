@@ -14,8 +14,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Copy the .env folder to current working dir
-      run: cp /home/dubut/envs/mediahavenfd.env .env
+    - name: Create the .env file containing backend server url
+      run: echo "REACT_APP_BACKEND_SERVER_URL=http://$(ip -4 addr show wlan0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}'):5001" > .env
     - name: Build the Docker image
       run: docker build -t mediahavenfd .
     - name: Stop and Remove Existing Container (if running)
